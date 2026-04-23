@@ -7,19 +7,27 @@ CATEGORY_NUMS=(10 11 12 15 17 20 21 23 31 32)
 DIFFICULTIES=("easy" "medium" "hard")
 
 #------------------[ Functions ]------------------
+rangeInvalid(){
+    printf "+--------------------------------------------------+\n"
+    printf "| Keep the number in range, mate!                  |\n"
+    printf "+--------------------------------------------------+\n"
+}
+
+typeInvalid(){
+    printf "+--------------------------------------------------+\n"
+    printf "| Input must be a number, you bloody pillock!      |\n"
+    printf "| And no minuses as well!                          |\n"
+    printf "+--------------------------------------------------+\n"
+}
+
 isCatInputValid() {
     if [[ $1 =~ ^([1-9]|10)$ ]]; then
         return 0
     elif (( $1 < 0 || $1 > 10 )); then
-        printf "+--------------------------------------------------+\n"
-        printf "| Keep the number in range, mate!                  |\n"
-        printf "+--------------------------------------------------+\n"
+        rangeInvalid
         return 1
     else
-        printf "+--------------------------------------------------+\n"
-        printf "| Input must be a number, you bloody pillock!     |\n"
-        printf "| And no minuses as well!                         |\n"
-        printf "+--------------------------------------------------+\n"
+        typeInvalid
         return 1
     fi
 }
@@ -28,15 +36,10 @@ isDiffInputValid() {
     if [[ $1 =~ ^([1-3])$ ]]; then
         return 0
     elif (( $1 < 0 || $1 > 3 )); then
-        printf "+--------------------------------------------------+\n"
-        printf "| Keep the number in range, mate!                  |\n"
-        printf "+--------------------------------------------------+\n"
+        rangeInvalid
         return 1
     else
-        printf "+--------------------------------------------------+\n"
-        printf "| Input must be a number, you bloody pillock!     |\n"
-        printf "| And no minuses as well!                         |\n"
-        printf "+--------------------------------------------------+\n"
+        typeInvalid
         return 1
     fi
 }
@@ -45,15 +48,10 @@ isAnsInputValid() {
     if [[ $1 =~ ^([1-4])$ ]]; then
         return 0
     elif (( $1 < 0 || $1 > 4 )); then
-        printf "+--------------------------------------------------+\n"
-        printf "| Keep the number in range, mate!                  |\n"
-        printf "+--------------------------------------------------+\n"
+        rangeInvalid
         return 1
     else
-        printf "+--------------------------------------------------+\n"
-        printf "| Input must be a number, you bloody pillock!      |\n"
-        printf "| And no minuses as well!                          |\n"
-        printf "+--------------------------------------------------+\n"
+        typeInvalid
         return 1
     fi
 }
@@ -89,6 +87,8 @@ curlTrivia(){
     DIFFICULTY=$2
     curl "https://opentdb.com/api.php?amount=1&category=$CATEGORY&difficulty=$DIFFICULTY&type=multiple"
 }
+
+
 
 #------------------[ Shell start ]------------------
 printf "%s\n" "============================================================"
