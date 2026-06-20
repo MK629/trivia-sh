@@ -85,7 +85,7 @@ isQuitInputValid(){
 curlTrivia(){
     CATEGORY=$1
     DIFFICULTY=$2
-    curl "https://opentdb.com/api.php?amount=1&category=$CATEGORY&difficulty=$DIFFICULTY&type=multiple"
+    curl --progress-bar "https://opentdb.com/api.php?amount=1&category=$CATEGORY&difficulty=$DIFFICULTY&type=multiple"
 }
 
 
